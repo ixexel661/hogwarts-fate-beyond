@@ -1,23 +1,28 @@
 import { Link } from "@tanstack/react-router";
 
-export default function Header() {
-  const links = [{ to: "/", label: "Home" }] as const;
+import { Sparkle } from "./sheet/parchment";
 
+export default function Header() {
   return (
-    <div>
-      <div className="flex flex-row items-center justify-between px-2 py-1">
-        <nav className="flex gap-4 text-lg">
-          {links.map(({ to, label }) => {
-            return (
-              <Link key={to} to={to}>
-                {label}
-              </Link>
-            );
-          })}
+    <header className="border-b border-backdrop-foreground/15">
+      <div className="mx-auto flex max-w-[110rem] items-center justify-between gap-4 px-4 py-2.5 sm:px-6">
+        <Link
+          to="/"
+          className="flex items-center gap-2 font-display text-sm font-bold tracking-[0.2em] uppercase sm:text-base"
+        >
+          <Sparkle className="size-3.5" />
+          Hogwarts · Fate Core
+        </Link>
+        <nav>
+          <Link
+            to="/"
+            activeOptions={{ exact: true }}
+            className="text-base opacity-80 transition hover:opacity-100 data-[status=active]:underline data-[status=active]:underline-offset-4 data-[status=active]:opacity-100"
+          >
+            Charaktere
+          </Link>
         </nav>
-        <div className="flex items-center gap-2"></div>
       </div>
-      <hr />
-    </div>
+    </header>
   );
 }

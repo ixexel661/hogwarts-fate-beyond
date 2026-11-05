@@ -1,0 +1,50 @@
+enum House {
+  GRYFFINDOR
+  HUFFLEPUFF
+  RAVENCLAW
+  SLYTHERIN
+}
+
+model Character {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Persönliche Angaben
+  name       String
+  age        String @default("")
+  origin     String @default("")
+  house      House?
+  schoolYear Int    @default(1)
+
+  // Charakteraspekte
+  highConcept  String @default("")
+  trouble      String @default("")
+  background   String @default("")
+  relationship String @default("")
+  freeAspect   String @default("")
+
+  // Fertigkeitenpyramide: 10 feste Slots (Index 0 = +4, 1-2 = +3, 3-5 = +2, 6-9 = +1)
+  skills String[]
+
+  // Zauberstab
+  wandWood        String @default("")
+  wandCore        String @default("")
+  wandLength      String @default("")
+  wandFlexibility String @default("")
+  wandSpecial     String @default("")
+
+  // Stunts (3 Einträge)
+  stunts String[]
+
+  // Stress (immer 7 Einträge, angezeigt wird die berechnete Anzahl)
+  physicalStress Boolean[]
+  mentalStress   Boolean[]
+
+  // Konsequenzen
+  consequenceMild     String @default("")
+  consequenceModerate String @default("")
+  consequenceSevere   String @default("")
+
+  notes String @default("")
+}
