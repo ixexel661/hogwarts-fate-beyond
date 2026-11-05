@@ -1,0 +1,45 @@
+# Docker Compose for hogwarts-fate-beyond
+# Full-stack container orchestration
+
+name: hogwarts-fate-beyond
+
+services:
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    container_name: hogwarts-fate-beyond-web
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - hogwarts-fate-beyond-network
+
+  db:
+    image: postgres:16-alpine
+    container_name: hogwarts-fate-beyond-postgres
+    environment:
+      POSTGRES_DB: hogwarts-fate-beyond
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - hogwarts-fate-beyond_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - hogwarts-fate-beyond-network
+
+networks:
+  hogwarts-fate-beyond-network:
+    driver: bridge
+
+volumes:
+  hogwarts-fate-beyond_postgres_data:

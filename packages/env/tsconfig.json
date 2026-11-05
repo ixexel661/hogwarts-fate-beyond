@@ -1,0 +1,3 @@
+{
+  "extends": "@hogwarts-fate-beyond/config/tsconfig.base.json"
+}

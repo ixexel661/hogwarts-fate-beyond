@@ -1,0 +1,38 @@
+{
+  "name": "@hogwarts-fate-beyond/db",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit --declaration false --declarationMap false --composite false",
+    "postinstall": "prisma generate",
+    "db:push": "prisma db push",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio",
+    "db:start": "docker compose up -d",
+    "db:watch": "docker compose up",
+    "db:stop": "docker compose stop",
+    "db:down": "docker compose down"
+  },
+  "dependencies": {
+    "@hogwarts-fate-beyond/env": "workspace:*",
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "catalog:",
+    "dotenv": "catalog:",
+    "pg": "^8.23.1",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@hogwarts-fate-beyond/config": "workspace:*",
+    "@types/pg": "^8.23.1",
+    "prisma": "^7.10.0",
+    "typescript": "catalog:"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "hogwarts-fate-beyond",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm -r dev",
+    "build": "pnpm -r build",
+    "check-types": "pnpm -r --if-present check-types",
+    "dev:web": "pnpm --filter web dev",
+    "db:push": "pnpm --filter @hogwarts-fate-beyond/db db:push",
+    "db:studio": "pnpm --filter @hogwarts-fate-beyond/db db:studio",
+    "db:generate": "pnpm --filter @hogwarts-fate-beyond/db db:generate",
+    "db:migrate": "pnpm --filter @hogwarts-fate-beyond/db db:migrate",
+    "db:start": "pnpm --filter @hogwarts-fate-beyond/db db:start",
+    "db:watch": "pnpm --filter @hogwarts-fate-beyond/db db:watch",
+    "db:stop": "pnpm --filter @hogwarts-fate-beyond/db db:stop",
+    "db:down": "pnpm --filter @hogwarts-fate-beyond/db db:down",
+    "check": "oxlint && oxfmt --write",
+    "ruler:apply": "pnpm dlx @intellectronica/ruler@latest apply --local-only"
+  },
+  "dependencies": {
+    "@hogwarts-fate-beyond/env": "workspace:*",
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@hogwarts-fate-beyond/config": "workspace:*",
+    "@types/node": "catalog:",
+    "oxfmt": "^0.56.0",
+    "oxlint": "^1.86.0",
+    "typescript": "catalog:"
+  },
+  "packageManager": "pnpm@12.14.0"
+}
